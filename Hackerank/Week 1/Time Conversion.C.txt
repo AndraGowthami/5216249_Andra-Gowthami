@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<string.h>
+void timeConversion(char*s){
+    int hour;
+    char period[3];
+    char hh[3],mm[3],ss[3];
+    sscanf(s,"%2s:%2s:%2s%2s",hh,mm,ss,period);
+    hour = atoi(hh);
+    if(strcmp(period,"AM")==0){
+        if(hour==12){
+            hour=0;
+        }
+    }else{
+        if(hour!=12){
+            hour+=12;
+        }
+    }
+    printf("%02d:%s:%s\n",hour,mm,ss);
+}
+int main(){
+    char time[11];
+    scanf("%s",time);
+    timeConversion(time);
+    return 0;
+}
