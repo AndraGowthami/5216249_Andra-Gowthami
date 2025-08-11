@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main(void){
+    char s[10005];
+    if(!fgets(s,sizeof s,stdin))return 0;
+    int seen[26] = {0};
+    int count = 0;
+    for(int i = 0;s[i] != '\0';i++){
+        unsigned char c = (unsigned char)s[i];
+        if(isalpha(c)){
+            int idx = tolower(c) - 'a';
+            if(!seen[idx]){
+                seen[idx] = 1;
+                count++;
+            }
+        }
+    }
+    if(count == 26)
+    printf("pangram\n");
+    else
+     printf("not pangram\n");
+  return 0;
+}
