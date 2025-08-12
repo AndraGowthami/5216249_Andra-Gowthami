@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+#define MAXN 128
+#define SIZE (2 * MAXN)
+
+int flippingMatrix(int n, int matrix[SIZE][SIZE]) {
+    int sum = 0;
+    int size = 2 * n;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int a = matrix[i][j];
+            int b = matrix[i][size - 1 - j];
+            int c = matrix[size - 1 - i][j];
+            int d = matrix[size - 1 - i][size - 1 - j];
+
+            int max1 = (a > b) ? a : b;
+            int max2 = (c > d) ? c : d;
+            int maxv = (max1 > max2) ? max1 : max2;
+
+            sum += maxv;
+        }
+    }
+    return sum;
+}
+
+int main() {
+    int q;
+    scanf("%d", &q);
+
+    while (q--) {
+        int n;
+        scanf("%d", &n);
+
+        int matrix[SIZE][SIZE];  
+        for (int i = 0; i < 2 * n; i++) {
+            for (int j = 0; j < 2 * n; j++) {
+                scanf("%d", &matrix[i][j]);
+            }
+        }
+
+        printf("%d\n", flippingMatrix(n, matrix));
+    }
+
+    return 0;
+}
